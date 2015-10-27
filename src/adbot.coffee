@@ -4,7 +4,7 @@ crypto = require 'crypto'
 uuid = require 'node-uuid'
 
 API_URL = 'https://adbot.io/api'
-TIMEOUT = 5e3
+TIMEOUT = 15e3
 
 noop = ->
 calcDigest = (time, secret, botKey, apiKey) ->
@@ -13,18 +13,20 @@ calcDigest = (time, secret, botKey, apiKey) ->
 
 class Client
 
-  constructor: (@key, @botId, @apiUrl = API_URL) ->
+  constructor: (@key, @botId, @config = {}) ->
     # @botId can be key or id
+    @config.apiUrl ||= API_URL
+    @config.timeout ||= TIMEOUT
     @botId = parseInt(@botId, 10)
 
 
   emitEvent: (params, cb = noop) ->
     params.apiKey = @key
     p = promise.fromNode (cb) =>
-      request.post("#{@apiUrl}/bots/#{@botId}/emit_event", {
+      request.post("#{@config.apiUrl}/bots/#{@botId}/emit_event", {
         body: params
         json: true
-        timeout: TIMEOUT
+        timeout: @config.timeout
       }, cb)
     .get(1)
     p.nodeify(cb)
@@ -58,5 +60,5 @@ class Client
     p.nodeify(cb)
     p
 
-module.exports = (key, botId, apiUrl) ->
-  new Client(key, botId, apiUrl)
+module.exports = (key, botId, config) ->
+  new Client(key, botId, config)
