@@ -25,7 +25,8 @@ class Client
         body: params
         json: true
         timeout: TIMEOUT
-      }, cb).get(1)
+      }, cb)
+    .get(1)
     p.nodeify(cb)
     p
 
