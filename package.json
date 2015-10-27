@@ -1,6 +1,6 @@
 {
   "name": "adbot",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Node.js client for adbot.io API",
   "main": "lib/adbot.js",
   "scripts": {

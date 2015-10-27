@@ -55,7 +55,7 @@ class Client
           data.events = events
         if action is 'disable'
           data.success = true
-        data.digest = calcDigest(time, secret, key, apiKey)
+        data.digest = calcDigest(time, data.secret, key, apiKey)
         data
     p.nodeify(cb)
     p
