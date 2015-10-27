@@ -34,7 +34,7 @@ var params = {
   },
 
   // see "user" field from https://core.telegram.org/bots/api#message
-  user: {
+  from: {
     id: 123456,
     username: 'john_doe',
     firstName: 'John',
