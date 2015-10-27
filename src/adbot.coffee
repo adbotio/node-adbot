@@ -58,5 +58,5 @@ class Client
     p.nodeify(cb)
     p
 
-module.exports = (key) ->
-  new Client(key)
+module.exports = (key, botId, apiUrl) ->
+  new Client(key, botId, apiUrl)
