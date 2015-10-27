@@ -9,13 +9,13 @@ $ npm install adbot
 
 ## API
 ```
-var adbot = require('adbot')('ADBOT_API_KEY', botId)
+var adbot = require('adbot')('ADBOT_API_KEY', BOT_ID);
 ```
 
 ### Usage
 #### Pushing event
 ```
-var adbot = require('adbot')(ADBOT_API_KEY, BOT_ID)
+var adbot = require('adbot')(ADBOT_API_KEY, BOT_ID);
 
 // ...
 // Pushing event in some moment
@@ -51,12 +51,22 @@ var params = {
   // https://core.telegram.org/bots/api#forcereply
   reply_markup: {}
 };
-adbot.emitEvent('some_event_name', params);
+adbot.emitEvent(params, function (err, res) {
+  if (res.shown) {
+    console.log('Advert shown to user')
+  }
+  else {
+    console.log('Advert not shown to user.')
+    if (res.error) {
+      console.error(res.error);
+    }
+  }
+});
 ```
 
 #### Sync bot (partner API)
 ```
-var adbot = require('adbot')(ADBOT_API_KEY, BOT_ID)
+var adbot = require('adbot')(ADBOT_API_KEY, BOT_ID);
 
 // Some route, which handles sync
 app.post('/my_sync_handler', function (req, res) {
