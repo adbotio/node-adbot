@@ -37,8 +37,8 @@ var params = {
   from: {
     id: 123456,
     username: 'john_doe',
-    firstName: 'John',
-    lastName: 'Doe'
+    first_name: 'John',
+    last_name: 'Doe'
   },
 
   // optional
